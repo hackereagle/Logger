@@ -7,7 +7,6 @@ int InitializeLogger(int fileLogLevel, int uiLogLevel)
 
 void AsyncWrite(int type, const char *msg, int level)
 {
-	std::cout << "type = " << type << ", level = " << level << std::endl;
 	Logger::GetInstance().AsyncWrite(static_cast<LogType>(type), msg, static_cast<LogLevel>(level));
 }
 

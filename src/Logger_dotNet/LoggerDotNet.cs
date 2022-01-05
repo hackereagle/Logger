@@ -61,11 +61,12 @@ namespace scLin.Common
             return mInitializeLogger((int)fileLogLevel, (int)uiLogLevel);
         }
 
-        [DllImport("Logger.dll", CharSet = CharSet.Ansi, EntryPoint ="AsyncWrite")]
-        private static extern void mAsyncWrite(int logType, [MarshalAs(UnmanagedType.LPStr)]string msg, int logLevel);
+        [DllImport("Logger.dll", EntryPoint = "AsyncWrite")]
+        private static extern void mAsyncWrite(int logType, byte[] msg, int logLevel);
         public void AsyncWrite(LogType type, string msg, LogLevel level = LogLevel.LOGINFO)
         {
-            mAsyncWrite((int)type, msg, (int)level);
+            byte[] msgChar = System.Text.Encoding.ASCII.GetBytes(msg);
+            mAsyncWrite((int)type, msgChar, (int)level);
         }
 
         [DllImport("Logger.dll", EntryPoint = "RestartAsyncWrite")]
