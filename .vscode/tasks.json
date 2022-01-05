@@ -39,6 +39,16 @@
             "options": {
                 "cwd": "${workspaceFolder}"
             }
+        },
+        {
+            "label": "Rebuild project",
+            "type": "shell",
+            "command": "rm -r Bin; mkdir Bin; cmake -E chdir Bin/ cmake ..; cmake --build Bin/",
+            "problemMatcher": [],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
         }
 	]
 }

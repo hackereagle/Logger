@@ -5,8 +5,8 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include "LoggerCommon.h"
-#include "DateTime.h"
+#include "LoggerCommon.hpp"
+#include "DateTime.hpp"
 
 class LogArgs
 {

@@ -6,7 +6,7 @@
 #include <sys/stat.h>
 #include <filesystem>
 #include <utility>
-#include "Logger.h"
+#include "Logger.hpp"
 
 Logger* Logger::mInstance = nullptr;
 std::mutex obj;
@@ -40,11 +40,12 @@ Logger& Logger::GetInstance()
     return *Logger::mInstance;
 }
 
-bool Logger::Initialize(LogLevel fileLogLevel)
+bool Logger::Initialize(LogLevel fileLogLevel, LogLevel uiLogLevel)
 {
     bool isSucess = false;
 
-    this->mLevel = fileLogLevel;
+    this->mFileLevel = fileLogLevel;
+    this->mUiLevel = uiLogLevel;
     if(this->mIsInitialize == false){
         this->mIsInitialize = true;
         mIsAsyncWrite = true;
@@ -67,7 +68,7 @@ void Logger::CheckDirectoryExist(std::string& path)
 
 void Logger::WriteToFile(std::unique_ptr<LogArgs> log)
 {
-    if(log->GetLevel() >= this->mLevel){
+    if(log->GetLevel() >= this->mFileLevel){
         std::string path = this->mLogPath + mPathSpacer + log->GetLogDate() + mPathSpacer + EnumToString(log->GetType()) + mPathSpacer;
         std::string filename = EnumToString(log->GetType()) + log->GetLogHour() + ".log";
         std::string logFile = path + filename;
@@ -84,7 +85,6 @@ void Logger::WriteToFile(std::unique_ptr<LogArgs> log)
         
         fileStream << log->GetLogTime() << "\t[" << EnumToString(log->GetLevel()) << "]\t"  << log->GetActionMessage() << std::endl;
         fileStream.close();
-        // std::cout << log->GetActionMessage() << std::endl;
     }
 }
 

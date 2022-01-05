@@ -6,7 +6,7 @@
 #include <queue>
 #include <memory>
 #include <string>
-#include "LogArgs.h"
+#include "LogArgs.hpp"
 
 #ifdef _WIN32
 class DLLEXPORT_LOGGER_API Logger
@@ -17,7 +17,7 @@ class Logger
 public:
     ~Logger();
     static Logger& GetInstance();
-    bool Initialize(LogLevel fileLogLevel = LogLevel::LOGINFO);
+    bool Initialize(LogLevel fileLogLevel = LogLevel::LOGINFO, LogLevel uiLogLevel = LogLevel::LOGINFO);
     void AsyncWrite(LogType type, const char *msg, LogLevel level = LogLevel::LOGINFO, std::shared_ptr<DateTime> time = nullptr);
     void AsyncWrite(LogType type, std::string msg, LogLevel level = LogLevel::LOGINFO, std::shared_ptr<DateTime> time = nullptr);
     void SyncWrite(LogType type, const char *msg, LogLevel level = LogLevel::LOGINFO, std::shared_ptr<DateTime> time = nullptr);
@@ -35,7 +35,8 @@ private:
     const std::string mPathSpacer = std::string("/");
     // setting
     // TODO: In future, the setting would be wraped to a class and judge whether write log.
-    LogLevel mLevel;
+    LogLevel mFileLevel;
+    LogLevel mUiLevel;
 
     Logger();
     void AsyncWriteLogService();

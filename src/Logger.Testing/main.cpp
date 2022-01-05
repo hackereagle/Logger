@@ -4,9 +4,9 @@
 #include <memory>
 #include <thread>
 #include <chrono>
-#include "../Logger/Logger.h"
-#include "../Logger/DateTime.h"
-#include "../Logger/LogArgs.h"
+#include "../Logger/Logger.hpp"
+#include "../Logger/DateTime.hpp"
+#include "../Logger/LogArgs.hpp"
 
 int main(int argc, char* argv[])
 {
