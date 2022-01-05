@@ -49,6 +49,15 @@
             "options": {
                 "cwd": "${workspaceFolder}"
             }
-        }
+        },
+        {
+            "label": "compile and copy dll",
+            "type": "shell",
+            "command": "cmake --build Bin; cp Bin/bin/Debug/Logger.dll Bin/Logger.dll",
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
 	]
 }

@@ -11,24 +11,24 @@
 #endif //_WIN32
 
 #define LOGTYPE_VALUE_TABLE \
-    LOGTYPE_TABLE(Start,       "Start") \
-    LOGTYPE_TABLE(Camera,      "Camera") \
-    LOGTYPE_TABLE(Socket,      "Socket") \
-    LOGTYPE_TABLE(TeachData,   "TeachData") \
-    LOGTYPE_TABLE(Application, "Application") \
-    LOGTYPE_TABLE(Algorithm,   "Algorithm") \
-    LOGTYPE_TABLE(Exception,   "Exception") \
-    LOGTYPE_TABLE(Final,       "Final") 
+    LOGTYPE_TABLE(Start,      -1, "Start") \
+    LOGTYPE_TABLE(Camera,      0, "Camera") \
+    LOGTYPE_TABLE(Socket,      1, "Socket") \
+    LOGTYPE_TABLE(TeachData,   2, "TeachData") \
+    LOGTYPE_TABLE(Application, 3, "Application") \
+    LOGTYPE_TABLE(Algorithm,   4, "Algorithm") \
+    LOGTYPE_TABLE(Exception,   5, "Exception") \
+    LOGTYPE_TABLE(Final,       6, "Final") 
 
-#define LOGTYPE_TABLE(a, b) a,
+#define LOGTYPE_TABLE(a, b, c) a = b,
 enum class LogType {LOGTYPE_VALUE_TABLE};
 #undef LOGTYPE_TABLE
 
 inline const char* EnumToString(LogType value) {
-#define LOGTYPE_TABLE(a, b) b,
+#define LOGTYPE_TABLE(a, b, c) c,
     static const char* table[] = {LOGTYPE_VALUE_TABLE};
 #undef LOGTYPE_TABLE
-    return table[(int)value];
+    return table[(int)(value) + 1];
 };
 
 #define LOGLEVEL_VALUE_TABLE \
