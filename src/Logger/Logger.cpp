@@ -123,7 +123,7 @@ void Logger::AsyncWrite(LogType type, std::string msg, LogLevel level, std::shar
         throw std::exception();
     }
 
-    this->mLogBuffer.push(std::make_unique<LogArgs>(type, msg.c_str(), level, time));
+    this->mLogBuffer.push(std::make_unique<LogArgs>(type, msg, level, time));
 }
 
 void Logger::SyncWrite(LogType type, const char *msg, LogLevel level, std::shared_ptr<DateTime> time)

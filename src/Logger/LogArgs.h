@@ -11,7 +11,7 @@
 class LogArgs
 {
 public:
-    LogArgs(LogType type, const char* msg, LogLevel level = LogLevel::LOGINFO, std::shared_ptr<DateTime> time = nullptr)
+    LogArgs(LogType type, std::string msg, LogLevel level = LogLevel::LOGINFO, std::shared_ptr<DateTime> time = nullptr)
     {
         mLevel = level;
         mType = type;
@@ -70,10 +70,10 @@ public:
 
     LogType GetType(){ return mType;}
     LogLevel GetLevel(){ return mLevel;}
-    const char* GetActionMessage(){ return mActionMessage;}
+    std::string GetActionMessage(){ return mActionMessage;}
 
 private:
-    const char* mActionMessage; 
+    std::string mActionMessage; 
     LogLevel mLevel;
     LogType mType;
     std::shared_ptr<DateTime> mTime;
