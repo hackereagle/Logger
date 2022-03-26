@@ -1,0 +1,44 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "label": "create building directory",
+            "type": "shell",
+            "command": "cmake -E make_directory Bin",
+            "problemMatcher": [],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "make makefile",
+            "type": "shell",
+            "command": "cmake -E chdir Bin cmake ..",
+            "problemMatcher": [],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "cmake --build Bin",
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "remove building directory",
+            "type": "shell",
+            "command": "rm -r Bin",
+            "problemMatcher": [],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        }
+	]
+}
