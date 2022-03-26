@@ -36,6 +36,12 @@ int main(int argc, char* argv[])
     Logger::GetInstance().AsyncWrite(LogType::Application, "test", LogLevel::LOGERROR);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
+    std::cout << "\n\n=== Test using ostring stream ===" << std::endl;
+    std::ostringstream ss;
+    ss << "Test string " << 5566 << " tttttt" << std::endl;
+    Logger::GetInstance().AsyncWrite(LogType::Application, ss.str(), LogLevel::LOGERROR);
+    std::cout << "content: " << ss.str() << std::endl;
+
     std::cout << "end testing" << std::endl;
 
     getchar();
